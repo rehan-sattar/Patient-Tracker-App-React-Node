@@ -1,0 +1,18 @@
+@import url('https://fonts.googleapis.com/css?family=Berkshire+Swash|Bree+Serif|Merienda+One');
+
+.signup-form {
+    height: 100vh;
+    width: 100%;
+    background: url('../../assets/shocase.jpg') no-repeat fixed;
+
+    background-size: cover;
+};
+
+.sign-up-overlay {
+    height: 100vh;
+    width: 100%;
+    background-color: #0132408e;
+}
+.formHeading {
+    font-family: 'Merienda One', cursive;
+}
