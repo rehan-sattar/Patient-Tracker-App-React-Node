@@ -1,13 +1,13 @@
 # Patien Tracker Application 
 
 ## Technologies
-### Cleint side
+### Client side
 - React JS 
 - React Router
 - Redux
 ### Authentication
 - Firebase Authentication
-### Back end Tecnhologies
+### Back end Technologies
 - NodeJS
 - Express
 - MongoDB
@@ -15,8 +15,8 @@
 
 
 ## How to start ? 
-### cleint side
-- clone the application
+### client side
+- clone the Application
 ```
 npm install
 npm start
