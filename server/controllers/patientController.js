@@ -1,4 +1,3 @@
-const mongoose = require('mongoose');
 const Patient = require('../modals/patientModal');
 
 const readAllPatient = (req, res) => {
