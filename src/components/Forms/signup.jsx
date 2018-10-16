@@ -1,27 +1,46 @@
 import React from "react";
 import { Link } from "react-router-dom"
+import { connect } from "react-redux";
+import { bindActionCreators} from "redux";
+import { getUserSignUp } from "../../store/Actions/ActionCreators";
 import "./formStyles.css";
 class SignUp extends React.Component {
     constructor() {
         super();
         this.state = {
             firstName: '',
-            lastname: '',
-            docotorFullName: '',
+            lastName: '',
             doctorEmail: '',
             doctorPassword: '',
             doctorGender: '',
+            authToken : null
         };
         this.submitHandler = this.submitHandler.bind(this);
     };
 
+    // componentWillReceiveProps(props) {
+    //     console.log(props);
+    // }
+    // static getDerivedStateFromProps(nextProps, prevState) {
+    // it needs to bhi done! 
+    //     if(prevState.authToken !== nextProps.authstate.Authreducer.authToken ) {
+    //         console.log(nextProps.authstate.Authreducer.authToken);
+    //         return {
+               
+    //         }
+    //     }
+
+    //     return null;
+        
+    // }
+
     submitHandler(e) {
         e.preventDefault();
         console.log('STATE FROM SIGNUP COMPONENT: ', this.state);
+        this.props.getuserSignin(this.state);
         this.setState({
             firstName: '',
             lastname: '',
-            docotorFullName: '',
             doctorEmail: '',
             doctorPassword: '',
             doctorGender: '',
@@ -96,4 +115,12 @@ class SignUp extends React.Component {
     };
 };
 
-export default SignUp;
+const mapStateToProps = (state) => ({
+    authstate : state
+});
+const mapDispatchToProps = ( dispatch ) => {
+    return bindActionCreators({
+        getuserSignin : (state) => getUserSignUp(state)
+    }, dispatch);
+};
+export default connect(mapStateToProps , mapDispatchToProps)(SignUp);
