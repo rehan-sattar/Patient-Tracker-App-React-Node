@@ -1,19 +1,29 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { bindActionCreators} from "redux";
+import { bindActionCreators } from "redux";
 import { getUserLogin } from "../../store/Actions/ActionCreators";
 
 
 class Login extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
+            prevProps: props,
             email: '',
             password: ''
         };
         this.submitHandler = this.submitHandler.bind(this);
     }
+
+    static getDerivedStateFromProps(nextProps, prevState) {
+        if (prevState.prevProps !== nextProps) {
+            nextProps.history.push('/dashboard');
+            return {};
+        }
+        return null;
+    };
+
 
     submitHandler(e) {
         e.preventDefault();
@@ -60,11 +70,12 @@ class Login extends React.Component {
 };
 
 const mapStateToProps = (state) => ({
-    authstate : state
+    authstate: state
 });
-const mapDispatchToProps = ( dispatch ) => {
+const mapDispatchToProps = (dispatch) => {
     return bindActionCreators({
-        getUserLoginAttempt : (state) => getUserLogin(state)
+        getUserLoginAttempt: (state) => getUserLogin(state)
     }, dispatch);
 };
-export default connect(mapStateToProps , mapDispatchToProps)(Login);
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

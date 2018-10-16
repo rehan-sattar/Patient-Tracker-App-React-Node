@@ -5,9 +5,10 @@ import { bindActionCreators} from "redux";
 import { getUserSignUp } from "../../store/Actions/ActionCreators";
 import "./formStyles.css";
 class SignUp extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
+            prevProps : props,
             firstName: '',
             lastName: '',
             doctorEmail: '',
@@ -17,22 +18,15 @@ class SignUp extends React.Component {
         };
         this.submitHandler = this.submitHandler.bind(this);
     };
-
-    // componentWillReceiveProps(props) {
-    //     console.log(props);
-    // }
-    // static getDerivedStateFromProps(nextProps, prevState) {
-    // it needs to bhi done! 
-    //     if(prevState.authToken !== nextProps.authstate.Authreducer.authToken ) {
-    //         console.log(nextProps.authstate.Authreducer.authToken);
-    //         return {
-               
-    //         }
-    //     }
-
-    //     return null;
-        
-    // }
+    
+    static getDerivedStateFromProps(nextProps, prevState) {
+        if(prevState.prevProps !== nextProps) {
+            console.log(nextProps.authstate.Authreducer.authToken);
+            nextProps.history.push('/dashboard')
+            return {}
+        }
+        return null;
+    }
 
     submitHandler(e) {
         e.preventDefault();
