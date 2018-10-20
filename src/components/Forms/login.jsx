@@ -18,7 +18,7 @@ class Login extends React.Component {
 
     static getDerivedStateFromProps(nextProps, prevState) {
         if (prevState.prevProps !== nextProps) {
-            nextProps.history.push('/dashboard');
+            nextProps.history.push('/dashboard/allPaitents');
             return {};
         }
         return null;
