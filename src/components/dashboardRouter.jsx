@@ -1,22 +1,20 @@
 import React from "react";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import {Route} from "react-router-dom";
 import AddPatient from "../components/Dashboard/containers/AddPatient";
 import AllPatients from "../components/Dashboard/containers/AllPatients";
 import SearchPatient from "../components/Dashboard/containers/SearchPatient";
 import PatientHistory from "../components/Dashboard/containers/PatientHistory";
+import DoctorProfile from '../components/Dashboard/containers/DoctorProfile';
 
 class DashboardRouter extends React.Component {
     render() {
         return (
             <div>
-            {/* //     <BrowserRouter> */}
-            {/* //         <Switch> */}
-                        <Route exact path="/dashboard/addPatient" render= { () => <AddPatient />} />
-                        <Route path="/dashboard/allPaitents"  component={AllPatients} />
-                        <Route path="/dashboard/searchPatient" component={SearchPatient} />
-                        <Route path="/dashboard/patientHistory" component={PatientHistory} />
-                {/* //     </Switch> */}
-                {/* // </BrowserRouter> */}
+                <Route exact path="/dashboard/addPatient" render={() => <AddPatient />} />
+                <Route path="/dashboard/allPaitents" component={AllPatients} />
+                <Route path="/dashboard/searchPatient" component={SearchPatient} />
+                <Route path="/dashboard/patientHistory" component={PatientHistory} />
+                <Route path="/dashboard/doctorProfile" component={DoctorProfile} />
             </div>
         );
     };

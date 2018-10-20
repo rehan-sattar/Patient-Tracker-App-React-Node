@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 
-export default class PatientCard extends Component {
+export default class PatientHistory extends Component {
   render() {
     return (
       <div>
-        this is a single patient card
+        this is patient history component
       </div>
     )
   }

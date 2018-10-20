@@ -1,51 +1,45 @@
-.wrapper {
-    display: flex;
-    width: 100%;
-    align-items: stretch;
+body {
+    font-family: "Lato", sans-serif;
 }
 
-#sidebar {
-    background: #7386D5;
-    color: #fff;
-    transition: all 0.3s;
-    min-width: 250px;
-    max-width: 250px;
-    min-height: 100vh;
-}
-#sidebar.active {
-    margin-left: -250px;
-}
-#sidebar .sidebar-header {
-    padding: 20px;
-    background: #6d7fcc;
-}
-#sidebar ul.components {
-    padding: 20px 0;
-    border-bottom: 1px solid #47748b;
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+    text-align:center;
 }
 
-#sidebar ul p {
-    color: #fff;
-    padding: 10px;
-}
-
-#sidebar ul li a {
-    padding: 10px;
-    font-size: 1.1em;
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
     display: block;
+    transition: 0.3s;
+
 }
 
-@media (max-width: 768px) {
-    #sidebar {
-        margin-left: -250px;
-    }
-    #sidebar.active {
-        margin-left: 0;
-    }
+.sidenav a:hover{
+    color: #f1f1f1;
 }
 
-.body {
-    font-family: 'Poppins', sans-serif;
-    background: #fafafa;
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
 }
 
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}

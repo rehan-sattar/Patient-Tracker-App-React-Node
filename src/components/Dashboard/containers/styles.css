@@ -1,0 +1,39 @@
+
+h1 { 
+    font-family: 'Merienda One', cursive;
+}
+.loader-hidden {
+  display: none;
+}
+.loader-active {
+  display: block;
+}
+.loader {
+    margin: 5em auto;
+    align-items:  'center';
+}
+.cardContainers{
+  background-color: #1D262D;
+  color: #fff;
+  padding: 1em;
+  border: 3px solid black;
+  transition: background-color 300ms ease-in-out;
+}
+
+.cardContainers:hover {
+  cursor: pointer;
+  background-color: transparent;
+  border: 3px solid black;
+  transition: background-color 300ms ease-in-out;
+  color: #17a2b8;
+}
+
+.routeLinks {
+  text-decoration: none;
+  color: #39cae0;
+}
+
+.routeLinks:hover {
+  text-decoration: none;
+  color: #39cae0;
+}
