@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-export default class PatientCard extends Component {
+class PatientProfileCard extends Component {
   render() {
     return (
       <div>
@@ -9,3 +9,5 @@ export default class PatientCard extends Component {
     )
   }
 }
+
+export default PatientProfileCard;

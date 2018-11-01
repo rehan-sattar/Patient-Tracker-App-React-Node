@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 
 const PatientSchema = new mongoose.Schema({
+    
     patientFullName: {
         type: String,
         require: true
@@ -9,14 +10,13 @@ const PatientSchema = new mongoose.Schema({
         type: Number,
         require: true
     },
-    patientDiseas: {
-        type: String,
-        require: true
-    },
-    medicationProvided: {
-        type: String,
-        require: true
-    },
+    appointmentRecords: [
+        {
+            desease : String,
+            medications: String,
+            date : String
+        }
+    ],
     dateOfArrival: {
         type: String,
         require: true

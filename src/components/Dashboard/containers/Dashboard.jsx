@@ -1,7 +1,10 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 import DashboardRouter from '../../dashboardRouter';
 import "../styles/dashboard.css"
+import { getUserLogout } from "../../../store/Actions/ActionCreatorsForUsers";
+import { bindActionCreators } from "C:/Users/Rehan Sattar/AppData/Local/Microsoft/TypeScript/3.1/node_modules/redux";
 
 class Dashboard extends Component {
     openNav() {
@@ -20,8 +23,8 @@ class Dashboard extends Component {
                     <Link to="/dashboard/addPatient" className="navLinks" onClick={() => this.closeNav()} > <i className="fa fa-plus mx-1"></i> Add patients</Link>
                     <Link to="/dashboard/searchPatient" className="navLinks" onClick={() => this.closeNav()} > <i className="fa fa-search mx-1"></i> Search patients</Link>
                     <Link to="/dashboard/doctorProfile" className="navLinks" onClick={() => this.closeNav()} > <i className="fa fa-user mx-1"></i> Profile </Link>
-                    
-                    <button className="btn btn-outline-info btn-lg"> <i className="fas fa-sign-out-alt"></i> Logout</button>
+
+                    <button className="btn btn-outline-info btn-lg" onClick={() => this.props.logotDoctor()}> <i className="fas fa-sign-out-alt"></i> Logout</button>
                 </div>
 
                 <header className="bg-dark text-white py-3">
@@ -42,4 +45,8 @@ class Dashboard extends Component {
     }
 }
 
-export default Dashboard;
+const mapDispatchToPtops = (dispatch) => bindActionCreators({
+    logotDoctor : () => getUserLogout()
+}, dispatch);
+
+export default connect(undefined, mapDispatchToPtops)(Dashboard);

@@ -1,7 +1,7 @@
 import auth from "../../firebase";
 import { Actions } from "./AllActions";
 
-const API_ENDPOINT = `http://localhost:8080/doctorDashbord`
+export const API_ENDPOINT = `http://localhost:8080/doctorDashbord`
 const getUserSignUp = ({ doctorEmail, doctorPassword, doctorGender, firstName, lastName }) => {
     console.log('iiii')
     return dispatch => {
@@ -13,6 +13,7 @@ const getUserSignUp = ({ doctorEmail, doctorPassword, doctorGender, firstName, l
                         'Content-Type': 'Application/json'
                     },
                     body: JSON.stringify({
+                        doctor_token: response.user.uid,
                         email: doctorEmail,
                         gender: doctorGender,
                         firstName,
@@ -21,8 +22,8 @@ const getUserSignUp = ({ doctorEmail, doctorPassword, doctorGender, firstName, l
                 })
                     .then(res => res.json())   // register user endpoint
                     .then(user => dispatch({
-                        type: Actions.usreSignUpSuccess,
-                        payload: {  user , token : response.uid}
+                        type: Actions.userSignUpSuccess,
+                        payload: { user, token: response.user.uid }
                     })).catch(err => dispatch({
                         type: Actions.usreSignUpError,
                         err
@@ -41,7 +42,7 @@ const getUserLogin = ({ email, password }) => {
             .then(res => {
                 dispatch({
                     type: Actions.userLoginSuccess,
-                    payload: res
+                    payload: { token: res.user.uid }
                 })
             }).catch(err => dispatch({
                 type: Actions.userLoginError,
@@ -50,7 +51,17 @@ const getUserLogin = ({ email, password }) => {
     };
 };
 
+const getUserLogout = () => {
+    return dispatch => {
+        auth.signOut()
+            .then(() => dispatch({ type: Actions.userLogoutSuccess }))
+            .catch(err => dispatch({ type: Actions.userLogoutError, payload: err.message }))
+    };
+};
+
+
 export {
     getUserSignUp,
-    getUserLogin
+    getUserLogin,
+    getUserLogout
 };

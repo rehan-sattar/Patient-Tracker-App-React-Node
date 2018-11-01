@@ -8,6 +8,7 @@ const readAllPatient = (req, res) => {
         .then(allPatients => {
             if (allPatients.length > 0) {
                 res.send({
+                    count: allPatients.length,
                     status: true,
                     allPatients
                 });
@@ -27,7 +28,8 @@ const readAllPatient = (req, res) => {
 };
 
 const insertPatient = (req, res) => {
-    const newPatient = new Patient(req.body);
+    const doctorId = req.params.doctor_id;
+    const newPatient = new Patient({ doctorId, ...req.body });
     newPatient.save()
         .then(newPatient => {
             res.send({
@@ -137,6 +139,54 @@ const updatePatientrecord = (req, res) => {
         })
 };
 
+const setAppointment = (req, res) => {
+    const id = req.params.id;
+    const appointmentObject = req.body;
+    Patient.findByIdAndUpdate(id, { $push: { appointmentRecords: appointmentObject } }, { new: true })
+        .then(updatedPatient => {
+            res.send({
+                status: true,
+                updatedPatient
+            })
+        }).catch(err => {
+            res.send({
+                status: false,
+                error: err
+            })
+        })
+};
+
+
+const patientHistory = (req, res) => {
+    const id = req.params.id;
+    Patient.findOne({
+        "_id": id
+    }).then(patient => {
+        // console.log({...patient})
+        // res.send(patient);
+        if (patient) { // array
+            // console.log(patient.appointmentRecords.length > 0)
+            // if (patient['appointmentRecords']) {
+            console.log(patient);
+            res.send({
+                status: true,
+                allApointments: patient['appointmentRecords']
+            })
+            // } else {
+            //     res.send({
+            //         status: false,
+            //         message: "no history found"
+            //     })
+            // }
+        } else {
+            res.send({
+                status: false,
+                message: "no patient found"
+            })
+        }
+    })
+};
+
 
 
 module.exports = {
@@ -145,5 +195,7 @@ module.exports = {
     searchPatientByDate,
     searchPatientByName,
     deletePatient,
-    updatePatientrecord
+    updatePatientrecord,
+    setAppointment,
+    patientHistory
 }

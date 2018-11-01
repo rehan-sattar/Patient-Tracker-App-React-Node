@@ -15,26 +15,26 @@ export default class SearchPatient extends Component {
 
     let dateForm = (
       <form>
-      <div class="input-group mb-3">
-        <div class="input-group-prepend">
-          <span class="input-group-text bg-dark text-white">
-          <i class="far fa-calendar-alt"></i>
+      <div className="input-group mb-3">
+        <div className="input-group-prepend">
+          <span className="input-group-text bg-dark text-white">
+          <i className="far fa-calendar-alt"></i>
           </span>
         </div>
-        <input type="date" class="form-control" placeholder="Date of Appointment" aria-label="Username" aria-describedby="basic-addon1" />
+        <input type="date" className="form-control" placeholder="Date of Appointment" aria-label="Username" aria-describedby="basic-addon1" />
       </div>
     </form>
     );
 
     let nameForm = (
       <form>
-        <div class="input-group mb-3">
-          <div class="input-group-prepend">
-            <span class="input-group-text bg-dark text-white">
-              <i class="fas fa-sort-alpha-down"></i>
+        <div className="input-group mb-3">
+          <div className="input-group-prepend">
+            <span className="input-group-text bg-dark text-white">
+              <i className="fas fa-sort-alpha-down"></i>
             </span>
           </div>
-          <input type="text" class="form-control" placeholder="Patient Name" aria-label="Username" aria-describedby="basic-addon1" />
+          <input type="text" className="form-control" placeholder="Patient Name" aria-label="Username" aria-describedby="basic-addon1" />
         </div>
       </form>
 
@@ -47,17 +47,17 @@ export default class SearchPatient extends Component {
           <h1 className="text-center"> Search Patients </h1>
           <section className="my-5">
             <div className="row justify-content-center">
-              <div className="col-md-4 col-lg-4 col-sm-12">
+              <div className="col-md-4 col-lg-4 col-sm-12 mb-1">
                 <Link to="/dashboard/searchPatient/byDate" className="routeLinks">
                   <button className="btn btn-outline-dark btn-block">
-                    <i class="far fa-calendar-alt"></i> By Date
+                    <i className="far fa-calendar-alt"></i> By Date
                   </button>
                 </Link>
               </div>
               <div className="col-md-4 col-lg-4 col-sm-12">
                 <Link to="/dashboard/searchPatient/byName" className="routeLinks">
                   <button className="btn btn-outline-dark btn-block">
-                    <i class="fas fa-sort-alpha-down"></i>  By Name
+                    <i className="fas fa-sort-alpha-down"></i>  By Name
                   </button>
                 </Link>
               </div>

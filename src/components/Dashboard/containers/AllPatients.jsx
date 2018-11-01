@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 import ReactLoading from 'react-loading';
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import { getAllPatients } from "../../../store/Actions/ActionCreatorsForDoctor";
 import './styles.css';
 
 const Example = () => (
   <ReactLoading type="spinningBubbles" color="#000" className="loader" />
 );
 
-export default class AllPatients extends Component {
+class AllPatients extends Component {
   constructor() {
     super();
     this.state = {
@@ -14,6 +17,8 @@ export default class AllPatients extends Component {
     }
   }
   componentDidMount = () => {
+
+    // let doctorId = localStorage.getItem('')
     fetch(`https://swapi.co/api/people`)
       .then(res => res.json())
       .then(users => this.setState({
@@ -32,18 +37,18 @@ export default class AllPatients extends Component {
         {
           this.state.users === undefined ? (<Example />) : (
             <div className="container">              {
-                this.state.users.map((user, index) => (
-                  <div key={index} className="my-1">
-                    <div className="card">
-                      <div className="card-body">
-                        <p> name : {user.name}</p>
-                        <p> Height : {user.height}</p>
-                        <p> mass: {user.mass}</p>
-                      </div>
+              this.state.users.map((user, index) => (
+                <div key={index} className="my-1">
+                  <div className="card">
+                    <div className="card-body">
+                      <p> name : {user.name}</p>
+                      <p> Height : {user.height}</p>
+                      <p> mass: {user.mass}</p>
                     </div>
                   </div>
-                ))
-              }
+                </div>
+              ))
+            }
             </div>
           )
         }
@@ -52,3 +57,11 @@ export default class AllPatients extends Component {
     )
   }
 }
+
+const mapStateToProps = (state) => ({});
+
+const mapDispatchToProps = (dispatch) => bindActionCreators({
+  downloadAllPatients: () => getAllPatients()
+}, dispatch)
+
+export default connect(mapStateToProps, mapDispatchToProps)(AllPatients)
