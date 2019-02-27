@@ -1,67 +1,70 @@
-import React, { Component } from 'react';
-import ReactLoading from 'react-loading';
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
-import { getAllPatients } from "../../../store/Actions/ActionCreatorsForDoctor";
-import './styles.css';
+import React, { Component } from 'react'
+
+import ReactLoading from 'react-loading'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { getAllPatients } from '../../../store/Actions/ActionCreatorsForDoctor'
+import './styles.css'
+import PatientCard from './PatientCard'
 
 const Example = () => (
-  <ReactLoading type="spinningBubbles" color="#000" className="loader" />
-);
+  <ReactLoading type='spinningBubbles' color='#000' className='loader' />
+)
 
 class AllPatients extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props)
     this.state = {
-      users: undefined
+      prevProps: props,
+      patients: undefined
     }
   }
   componentDidMount = () => {
+    this.props.downloadAllPatients()
+  }
 
-    // let doctorId = localStorage.getItem('')
-    fetch(`https://swapi.co/api/people`)
-      .then(res => res.json())
-      .then(users => this.setState({
-        users: users.results
-      }));
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (prevState.prevProps !== nextProps) {
+      console.log(nextProps.patientReducer.patients)
+      return {
+        patients: nextProps.patientReducer.patients
+      }
+    }
+
+    return null
   }
 
   render() {
     return (
       <div>
-        <div className="container">
+        <div className='container'>
           <h1>Welcome to Dashboard!</h1>
           <hr />
           <h1>Your Patients</h1>
         </div>
-        {
-          this.state.users === undefined ? (<Example />) : (
-            <div className="container">              {
-              this.state.users.map((user, index) => (
-                <div key={index} className="my-1">
-                  <div className="card">
-                    <div className="card-body">
-                      <p> name : {user.name}</p>
-                      <p> Height : {user.height}</p>
-                      <p> mass: {user.mass}</p>
-                    </div>
-                  </div>
-                </div>
-              ))
-            }
-            </div>
-          )
-        }
-
+        {this.state.patients === undefined ? (
+          <Example />
+        ) : (
+          <PatientCard patients={this.state.patients} />
+        )}
       </div>
     )
   }
 }
 
-const mapStateToProps = (state) => ({});
+const mapStateToProps = state => ({
+  patientReducer: state.patientReducer
+})
 
-const mapDispatchToProps = (dispatch) => bindActionCreators({
-  downloadAllPatients: () => getAllPatients()
-}, dispatch)
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(
+    {
+      downloadAllPatients: () => getAllPatients()
+    },
+    dispatch
+  )
 
-export default connect(mapStateToProps, mapDispatchToProps)(AllPatients)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(AllPatients)

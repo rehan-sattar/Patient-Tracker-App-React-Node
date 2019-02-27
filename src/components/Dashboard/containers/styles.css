@@ -1,6 +1,5 @@
-
-h1 { 
-    font-family: 'Merienda One', cursive;
+h1 {
+  font-family: 'Merienda One', cursive;
 }
 .loader-hidden {
   display: none;
@@ -9,11 +8,11 @@ h1 {
   display: block;
 }
 .loader {
-    margin: 5em auto;
-    align-items:  'center';
+  margin: 5em auto;
+  align-items: 'center';
 }
-.cardContainers{
-  background-color: #1D262D;
+.cardContainers {
+  background-color: #1d262d;
   color: #fff;
   padding: 1em;
   border: 3px solid black;
