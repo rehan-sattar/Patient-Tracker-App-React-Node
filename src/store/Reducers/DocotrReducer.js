@@ -9,9 +9,10 @@ export const patientReducer = (state = defaultState, action) => {
   switch (action.type) {
     case DoctorActions.add_patient_success:
       updatedState.patients = [action.payload, ...updatedState.patients]
+      swal("Greeting!", "Patient Added! ", "success")
       break
     case DoctorActions.add_patient_error:
-      swal("There was an error in process!")
+      swal("OOps!", action.payload, "error")
       break
     case DoctorActions.read_all_patient_success:
       updatedState.patients = action.payload

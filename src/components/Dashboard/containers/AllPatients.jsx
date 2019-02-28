@@ -12,24 +12,8 @@ const Example = () => (
 )
 
 class AllPatients extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      prevProps: props,
-      patients: undefined
-    }
-  }
   componentDidMount = () => {
     this.props.downloadAllPatients()
-  }
-
-  static getDerivedStateFromProps(nextProps, prevState) {
-    if (prevState.prevProps !== nextProps) {
-      return {
-        patients: nextProps.patientReducer.patients
-      }
-    }
-    return null
   }
 
   render() {
@@ -40,12 +24,13 @@ class AllPatients extends Component {
           <hr />
           <h1>Your Patients</h1>
         </div>
-        {this.state.patients === undefined ? (
+        {console.log(this.props.patients)}
+        {this.props.patients === undefined ? (
           <Example />
-        ) : this.state.patients.length === 0 ? (
+        ) : this.props.patients.length === 0 ? (
           <p>No Patients in you list! </p>
         ) : (
-          <PatientCard patients={this.state.patients} />
+          <PatientCard patients={this.props.patients} />
         )}
       </div>
     )
@@ -53,7 +38,7 @@ class AllPatients extends Component {
 }
 
 const mapStateToProps = state => ({
-  patientReducer: state.patientReducer
+  patients: state.patientReducer.patients
 })
 
 const mapDispatchToProps = dispatch =>

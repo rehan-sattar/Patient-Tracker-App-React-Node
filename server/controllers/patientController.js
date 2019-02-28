@@ -32,6 +32,7 @@ const readAllPatient = (req, res) => {
 const insertPatient = (req, res) => {
   const doctorId = req.params.doctor_id
   const newPatient = new Patient({ doctorId, ...req.body })
+  console.log(req.body)
   newPatient
     .save()
     .then(newPatient => {

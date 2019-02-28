@@ -28,7 +28,8 @@ export const addPatient = ({
   patientAge,
   patientDiseas,
   medicationProvided,
-  dateOfArrival
+  dateOfArrival,
+  gender
 }) => {
   return dispatch => {
     let id = localStorage.getItem("doctor_id")
@@ -41,13 +42,26 @@ export const addPatient = ({
         id,
         patientFullName,
         patientAge,
+        gender,
         patientDiseas,
         medicationProvided,
         dateOfArrival
       })
     })
       .then(res => res.json())
-      .then(patient => console.log(patient))
+      .then(data => {
+        if (data.status) {
+          dispatch({
+            type: DoctorActions.add_patient_success,
+            payload: data.newPatient
+          })
+        } else {
+          dispatch({
+            type: DoctorActions.add_patient_error,
+            payload: "Sorry, patient was not added!"
+          })
+        }
+      })
       .catch(err => console.log("Error: ", err))
   }
 }

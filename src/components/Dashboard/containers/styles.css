@@ -1,5 +1,5 @@
 h1 {
-  font-family: 'Merienda One', cursive;
+  font-family: "Merienda One", cursive;
 }
 .loader-hidden {
   display: none;
@@ -9,7 +9,7 @@ h1 {
 }
 .loader {
   margin: 5em auto;
-  align-items: 'center';
+  align-items: "center";
 }
 .cardContainers {
   background-color: #1d262d;
@@ -35,4 +35,17 @@ h1 {
 .routeLinks:hover {
   text-decoration: none;
   color: #39cae0;
+}
+
+.radioContainer {
+  padding: 1em;
+}
+
+.radios {
+  margin: 0px 10px;
+  word-spacing: 5px;
+}
+
+input[type="radio"] {
+  margin-left: 5px;
 }

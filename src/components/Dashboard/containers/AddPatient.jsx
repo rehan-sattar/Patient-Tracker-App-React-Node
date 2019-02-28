@@ -1,15 +1,17 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
-import { addPatient } from '../../../store/Actions/ActionCreatorsForDoctor'
+import React, { Component } from "react"
+import { connect } from "react-redux"
+import { bindActionCreators } from "redux"
+import { addPatient } from "../../../store/Actions/ActionCreatorsForDoctor"
+import "./styles.css"
 class AddPatient extends Component {
   constructor() {
     super()
     this.state = {
-      patientFullName: '',
-      patientAge: '',
-      patientDiseas: '',
-      medicationProvided: '',
+      patientFullName: "",
+      patientAge: "",
+      gender: "",
+      patientDiseas: "",
+      medicationProvided: "",
       dateOfArrival: undefined
     }
 
@@ -18,32 +20,33 @@ class AddPatient extends Component {
 
   submitHandler(event) {
     event.preventDefault()
+    console.log(this.state)
     this.props.addPatientRequest(this.state)
-    this.state = {
-      patientFullName: '',
-      patientAge: '',
-      patientDiseas: '',
-      medicationProvided: '',
-      dateOfArrival: undefined
-    }
+    // this.setState({
+    //   patientFullName: "",
+    //   patientAge: "",
+    //   patientDiseas: "",
+    //   medicationProvided: "",
+    //   dateOfArrival: undefined
+    // })
   }
   render() {
     return (
       <div>
-        <div className='container'>
+        <div className="container">
           <h1>Welcome to Dashboard!</h1>
           <hr />
-          <h1 className='text-center'> Add Patients </h1>
+          <h1 className="text-center"> Add Patients </h1>
         </div>
-        <section className='my-5'>
-          <div className='container'>
-            <div className='row justify-content-center'>
-              <div className='col-md-5'>
+        <section className="my-5">
+          <div className="container">
+            <div className="row justify-content-center">
+              <div className="col-md-5">
                 <form onSubmit={this.submitHandler}>
                   <input
-                    type='text'
-                    className='form-control'
-                    placeholder='full name'
+                    type="text"
+                    className="form-control"
+                    placeholder="full name"
                     value={this.state.patientFullName}
                     onChange={e =>
                       this.setState({ patientFullName: e.target.value })
@@ -51,19 +54,54 @@ class AddPatient extends Component {
                   />
                   <br />
                   <input
-                    type='number'
-                    className='form-control'
-                    placeholder='Age'
+                    type="number"
+                    className="form-control"
+                    placeholder="Age"
                     value={this.state.patientAge}
                     onChange={e =>
                       this.setState({ patientAge: e.target.value })
                     }
                   />
+                  <div className="radioContainer">
+                    <span
+                      style={{
+                        display: "block",
+                        marginBottom: "5px",
+                        fontWeight: "bold"
+                      }}
+                    >
+                      {" "}
+                      Gender
+                    </span>
+                    <label className="radios">
+                      <input
+                        type="radio"
+                        value="male"
+                        name="gender"
+                        onChange={e =>
+                          this.setState({ gender: e.target.value })
+                        }
+                      />{" "}
+                      Male
+                    </label>
+                    <label className="radios">
+                      <input
+                        type="radio"
+                        value="female"
+                        name="gender"
+                        onChange={e =>
+                          this.setState({ gender: e.target.value })
+                        }
+                      />{" "}
+                      Female
+                    </label>
+                  </div>
+
                   <br />
                   <input
-                    type='text'
-                    className='form-control'
-                    placeholder='Diseas'
+                    type="text"
+                    className="form-control"
+                    placeholder="Diseas"
                     value={this.state.patientDiseas}
                     onChange={e =>
                       this.setState({ patientDiseas: e.target.value })
@@ -71,30 +109,29 @@ class AddPatient extends Component {
                   />
                   <br />
                   <textarea
-                    className='form-control'
-                    placeholder='Madications, (saperate by comma )'
+                    className="form-control"
+                    placeholder="Madications, (saperate by comma )"
                     value={this.state.medicationProvided}
                     onChange={e =>
                       this.setState({ medicationProvided: e.target.value })
                     }
                   />
-
                   <br />
                   <input
-                    type='date'
-                    className='form-control'
-                    placeholder='Date of Arrivla'
+                    type="date"
+                    className="form-control"
+                    placeholder="Date of Arrivla"
                     value={this.state.dateOfArrival}
                     onChange={e =>
                       this.setState({ dateOfArrival: e.target.value })
                     }
                   />
                   <br />
-                  <button className='btn btn-outline-dark btn-block'>
-                    {' '}
+                  <button className="btn btn-outline-dark btn-block">
+                    {" "}
                     <h5>
-                      {' '}
-                      <i className='fa fa-plus' /> Add
+                      {" "}
+                      <i className="fa fa-plus" /> Add
                     </h5>
                   </button>
                 </form>
