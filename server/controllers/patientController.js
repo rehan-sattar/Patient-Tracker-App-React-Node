@@ -1,4 +1,4 @@
-const Patient = require('../modals/patientModal')
+const Patient = require("../modals/patientModal")
 
 //============== read all patient =================
 const readAllPatient = (req, res) => {
@@ -16,12 +16,12 @@ const readAllPatient = (req, res) => {
       } else {
         res.send({
           status: false,
-          message: 'no patients'
+          message: "no patients"
         })
       }
     })
     .catch(err => {
-      re.send({
+      res.send({
         status: false,
         error: err
       })
@@ -62,7 +62,7 @@ const searchPatientByDate = (req, res) => {
       } else {
         res.send({
           status: false,
-          result: 'no patients found'
+          result: "no patients found"
         })
       }
     })
@@ -92,7 +92,7 @@ const searchPatientByName = (req, res) => {
       } else {
         res.send({
           status: false,
-          message: 'no records found'
+          message: "no records found"
         })
       }
     }
@@ -114,7 +114,7 @@ const deletePatient = (req, res) => {
       } else {
         res.send({
           status: false,
-          message: 'no such patient exist in database'
+          message: "no such patient exist in database"
         })
       }
     })
@@ -131,7 +131,7 @@ const updatePatientrecord = (req, res) => {
   const updatedpatient = req.body
   Patient.findByIdAndUpdate(id, updatedpatient, { new: true })
     .then(updatedPatient => {
-      console.log('Updated patient: ', updatedPatient)
+      console.log("Updated patient: ", updatedPatient)
       if (updatedPatient) {
         res.send({
           status: true,
@@ -183,7 +183,7 @@ const patientHistory = (req, res) => {
       console.log(patient)
       res.send({
         status: true,
-        allApointments: patient['appointmentRecords']
+        allApointments: patient["appointmentRecords"]
       })
       // } else {
       //     res.send({
@@ -194,7 +194,7 @@ const patientHistory = (req, res) => {
     } else {
       res.send({
         status: false,
-        message: 'no patient found'
+        message: "no patient found"
       })
     }
   })

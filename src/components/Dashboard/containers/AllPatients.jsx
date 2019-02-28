@@ -1,14 +1,14 @@
-import React, { Component } from 'react'
+import React, { Component } from "react"
 
-import ReactLoading from 'react-loading'
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
-import { getAllPatients } from '../../../store/Actions/ActionCreatorsForDoctor'
-import './styles.css'
-import PatientCard from './PatientCard'
+import ReactLoading from "react-loading"
+import { connect } from "react-redux"
+import { bindActionCreators } from "redux"
+import { getAllPatients } from "../../../store/Actions/ActionCreatorsForDoctor"
+import "./styles.css"
+import PatientCard from "./PatientCard"
 
 const Example = () => (
-  <ReactLoading type='spinningBubbles' color='#000' className='loader' />
+  <ReactLoading type="spinningBubbles" color="#000" className="loader" />
 )
 
 class AllPatients extends Component {
@@ -25,25 +25,25 @@ class AllPatients extends Component {
 
   static getDerivedStateFromProps(nextProps, prevState) {
     if (prevState.prevProps !== nextProps) {
-      console.log(nextProps.patientReducer.patients)
       return {
         patients: nextProps.patientReducer.patients
       }
     }
-
     return null
   }
 
   render() {
     return (
       <div>
-        <div className='container'>
+        <div className="container">
           <h1>Welcome to Dashboard!</h1>
           <hr />
           <h1>Your Patients</h1>
         </div>
         {this.state.patients === undefined ? (
           <Example />
+        ) : this.state.patients.length === 0 ? (
+          <p>No Patients in you list! </p>
         ) : (
           <PatientCard patients={this.state.patients} />
         )}

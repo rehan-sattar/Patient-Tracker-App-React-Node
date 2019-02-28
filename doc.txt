@@ -1,0 +1,26 @@
+- Server integration
+- add patient 
+- read all patients of doctor 
+
+
+
+
+_ add patient : 
+
+ - doctore will add multiple patients to the database. 
+ - later on, it will read all patients from database. Only related to his/her.
+ 
+ - route => doctor/add_patient/:doctor_id
+ - patients:  {
+    1 :  {
+        doctor_id: 'someid',
+        ...props
+     }
+ }
+
+ - doctor: {
+     1 : {
+         doctor_id: 'someid',
+         
+     }
+ }

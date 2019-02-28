@@ -1,13 +1,13 @@
-import { DoctorActions } from '../Actions/AllActions'
-import { API_ENDPOINT } from './ActionCreatorsForUsers'
+import { DoctorActions } from "../Actions/AllActions"
+import { API_ENDPOINT } from "./ActionCreatorsForUsers"
 
 export const getAllPatients = () => {
   return dispatch => {
-    let id = localStorage.getItem('doctor_id')
+    let id = localStorage.getItem("doctor_id")
     fetch(`${API_ENDPOINT}/allPatients/${id}`)
       .then(res => res.json())
       .then(patients => {
-        if (patients.status) {
+        if (patients.status && patients.allPatients.length > 0) {
           dispatch({
             type: DoctorActions.read_all_patient_success,
             payload: patients.allPatients
@@ -15,11 +15,11 @@ export const getAllPatients = () => {
         } else {
           dispatch({
             type: DoctorActions.read_all_patient_error,
-            payload: patients.message
+            payload: "No Patients!"
           })
         }
       })
-      .catch(err => console.log('Error: ', err))
+      .catch(err => console.log("Error: ", err))
   }
 }
 
@@ -31,11 +31,11 @@ export const addPatient = ({
   dateOfArrival
 }) => {
   return dispatch => {
-    let id = localStorage.getItem('doctor_id')
+    let id = localStorage.getItem("doctor_id")
     fetch(`${API_ENDPOINT}/addPatient/${id}`, {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-Type': 'Application/json'
+        "Content-Type": "Application/json"
       },
       body: JSON.stringify({
         id,
@@ -48,6 +48,6 @@ export const addPatient = ({
     })
       .then(res => res.json())
       .then(patient => console.log(patient))
-      .catch(err => console.log('Error: ', err))
+      .catch(err => console.log("Error: ", err))
   }
 }
